@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+      nodejs: 12
+    commands:
+      - npm install -g serverless
+      - npm install -g serverless-offline --save-dev
+      - npm install -g serverless-dynamodb-local
+  build:
+    commands:
+      - ./gradlew clean build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+      - sls deploy -v -s $ENV_NAME

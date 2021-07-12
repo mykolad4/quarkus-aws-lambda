@@ -1,0 +1,162 @@
+service: modifier-service
+
+#plugins:
+#  - serverless-dynamodb-local
+#  - serverless-offline
+
+custom:
+  stageName: ${opt:stage, 'dev'}
+  dynamodbTableName: ${self:custom.stageName}-modifierTable
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+
+provider:
+  name: aws
+  runtime: provided
+  region: us-east-2
+  memorySize: 128
+  timeout: 5
+  stage: ${self:custom.stageName}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        Fn::GetAtt:
+          - modifierTable
+          - Arn
+  environment:
+    DISABLE_SIGNAL_HANDLERS: true
+    DYNAMODB_TABLE: ${self:custom.dynamodbTableName}
+
+package:
+  artifact: build/function.zip
+
+resources:
+  Resources:
+    modifierTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.dynamodbTableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  add-modifier:
+    handler: me.molka.handler.ModifierHandler
+    events:
+      - http:
+          path: modifier/add
+          method: post
+          integration: lambda
+          request:
+            template:
+              application/json: >
+                #set($inputRoot = $input.path('$'))
+                {
+                  "action": "CREATE_MODIFIER",
+                  "name": "$inputRoot.name",
+                  "cost": "$inputRoot.cost",
+                  "atLeast": "$inputRoot.atLeast",
+                  "atMost": "$inputRoot.atMost",
+                  "isDefault": "$inputRoot.isDefault",
+                  "isHidden": "$inputRoot.isHidden"
+                }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Content-Type: "'application/json'"
+            template: >
+              #set($inputRoot = $input.path('$'))
+              {
+                "result": $inputRoot
+              }
+  get-modifier:
+    handler: me.molka.handler.ModifierHandler
+    events:
+      - http:
+          path: modifier/{modifierId}
+          method: get
+          integration: lambda
+          request:
+            template:
+              application/json: >
+                #set($inputRoot = $input.path('$'))
+                {
+                  "id": "$input.params('id')",
+                  "action": "GET_MODIFIER"
+                }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Content-Type: "'application/json'"
+            template: >
+              #set($inputRoot = $input.path('$'))
+              {
+                "result": $inputRoot
+              }
+  delete-modifier:
+    handler: me.molka.handler.ModifierHandler
+    events:
+      - http:
+          path: modifier/{modifierId}
+          method: delete
+          integration: lambda
+          request:
+            template:
+              application/json: >
+                #set($inputRoot = $input.path('$'))
+                {
+                  "id": "$input.params('id')",
+                  "action": "DELETE_MODIFIER"
+                }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Content-Type: "'application/json'"
+            template: >
+              #set($inputRoot = $input.path('$'))
+              {
+                "result": $inputRoot
+              }
+
+  get-all-modifiers:
+    handler: me.molka.handler.ModifierHandler
+    events:
+      - http:
+          path: modifier
+          method: get
+          integration: lambda
+          request:
+            template:
+              application/json: >
+                #set($inputRoot = $input.path('$'))
+                {
+                  "action": "LIST"
+                }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Content-Type: "'application/json'"
+            template: >
+              #set($inputRoot = $input.path('$'))
+              {
+                "result": $inputRoot
+              }

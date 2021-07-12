@@ -1,0 +1,39 @@
+database:
+  table: ${DYNAMODB_TABLE}
+
+"%dev":
+  database:
+    table: dev-modifierTable
+  quarkus:
+    dynamodb:
+      endpoint-override: 'http://host.docker.internal:8000'
+      aws:
+        region: us-east-2
+        credentials:
+          type: static
+          static-provider:
+            access-key-id: test-key
+            secret-access-key: test-secret
+
+"%test":
+  database:
+    docker-image: amazon/dynamodb-local:1.13.2
+    docker-command: -jar DynamoDBLocal.jar -inMemory -sharedDb
+    container-port: 8000
+    table: modifierTable
+    read-capacity-units: 1
+    write-capacity-units: 1
+  quarkus:
+    lambda:
+      enable-polling-jvm-mode: true
+    log:
+      level: DEBUG
+    dynamodb:
+      endpoint-override: http://localhost:8001/
+      aws:
+        region: us-east-2
+        credentials:
+          type: static
+          static-provider:
+            access-key-id: test-key
+            secret-access-key: test-secret
