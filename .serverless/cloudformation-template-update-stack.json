@@ -74,25 +74,25 @@
     "AddDashmodifierLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/modifier-service-dev-add-modifier"
+        "LogGroupName": "/aws/lambda/modifier-api-dev-add-modifier"
       }
     },
     "GetDashmodifierLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/modifier-service-dev-get-modifier"
+        "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifier"
       }
     },
     "DeleteDashmodifierLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/modifier-service-dev-delete-modifier"
+        "LogGroupName": "/aws/lambda/modifier-api-dev-delete-modifier"
       }
     },
     "GetDashallDashmodifiersLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/modifier-service-dev-get-all-modifiers"
+        "LogGroupName": "/aws/lambda/modifier-api-dev-get-all-modifiers"
       }
     },
     "IamRoleLambdaExecution": {
@@ -120,7 +120,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "modifier-service",
+                  "modifier-api",
                   "dev",
                   "lambda"
                 ]
@@ -137,7 +137,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/modifier-service-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/modifier-api-dev*:*"
                     }
                   ]
                 },
@@ -148,7 +148,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/modifier-service-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/modifier-api-dev*:*:*"
                     }
                   ]
                 },
@@ -178,7 +178,7 @@
           "Fn::Join": [
             "-",
             [
-              "modifier-service",
+              "modifier-api",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -196,11 +196,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/modifier-service/dev/1626088499897-2021-07-12T11:14:59.897Z/function.zip"
+          "S3Key": "serverless/modifier-api/dev/1626424519619-2021-07-16T08:35:19.619Z/function.zip"
         },
         "Handler": "me.molka.handler.ModifierHandler",
         "Runtime": "provided",
-        "FunctionName": "modifier-service-dev-add-modifier",
+        "FunctionName": "modifier-api-dev-add-modifier",
         "MemorySize": 128,
         "Timeout": 5,
         "Environment": {
@@ -227,11 +227,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/modifier-service/dev/1626088499897-2021-07-12T11:14:59.897Z/function.zip"
+          "S3Key": "serverless/modifier-api/dev/1626424519619-2021-07-16T08:35:19.619Z/function.zip"
         },
         "Handler": "me.molka.handler.ModifierHandler",
         "Runtime": "provided",
-        "FunctionName": "modifier-service-dev-get-modifier",
+        "FunctionName": "modifier-api-dev-get-modifier",
         "MemorySize": 128,
         "Timeout": 5,
         "Environment": {
@@ -258,11 +258,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/modifier-service/dev/1626088499897-2021-07-12T11:14:59.897Z/function.zip"
+          "S3Key": "serverless/modifier-api/dev/1626424519619-2021-07-16T08:35:19.619Z/function.zip"
         },
         "Handler": "me.molka.handler.ModifierHandler",
         "Runtime": "provided",
-        "FunctionName": "modifier-service-dev-delete-modifier",
+        "FunctionName": "modifier-api-dev-delete-modifier",
         "MemorySize": 128,
         "Timeout": 5,
         "Environment": {
@@ -289,11 +289,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/modifier-service/dev/1626088499897-2021-07-12T11:14:59.897Z/function.zip"
+          "S3Key": "serverless/modifier-api/dev/1626424519619-2021-07-16T08:35:19.619Z/function.zip"
         },
         "Handler": "me.molka.handler.ModifierHandler",
         "Runtime": "provided",
-        "FunctionName": "modifier-service-dev-get-all-modifiers",
+        "FunctionName": "modifier-api-dev-get-all-modifiers",
         "MemorySize": 128,
         "Timeout": 5,
         "Environment": {
@@ -313,50 +313,50 @@
         "GetDashallDashmodifiersLogGroup"
       ]
     },
-    "GetDashmodifierLambdaVersion5G3OslINbJCY3SLKZZmWfGdZ47KrAOjMB2gwvutBioM": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "GetDashmodifierLambdaFunction"
-        },
-        "CodeSha256": "iV6y7lem7sI5Yozxu6O1xHCSMKoPC0OcdWS9B5M0+EE="
-      }
-    },
-    "AddDashmodifierLambdaVersionPn3SiayYG5M8F729iXaKyVvW6SoWYvmtueJJHqXcuRI": {
+    "AddDashmodifierLambdaVersionTjDR6WAx3XvaaObr0tdbfgjOP0PvYV2cdPQWk7N7U": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AddDashmodifierLambdaFunction"
         },
-        "CodeSha256": "iV6y7lem7sI5Yozxu6O1xHCSMKoPC0OcdWS9B5M0+EE="
+        "CodeSha256": "2aoORwBXDazBpXHLLlX8liVI/o4KheXaboG/wZIxuIs="
       }
     },
-    "DeleteDashmodifierLambdaVersionfLvpnDpaQOryCqkAOCTLYHz8SfTCVUYhcuXwLw5PD4": {
+    "GetDashmodifierLambdaVersionrPfsEwv5Z2GBtII4YWzwRgRdBr4stzR19kX7AbKmpBA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "DeleteDashmodifierLambdaFunction"
+          "Ref": "GetDashmodifierLambdaFunction"
         },
-        "CodeSha256": "iV6y7lem7sI5Yozxu6O1xHCSMKoPC0OcdWS9B5M0+EE="
+        "CodeSha256": "2aoORwBXDazBpXHLLlX8liVI/o4KheXaboG/wZIxuIs="
       }
     },
-    "GetDashallDashmodifiersLambdaVersiondenVEdmM6UWbkj55DHUAJBAEC8G6EX27gfrfojaUs4": {
+    "GetDashallDashmodifiersLambdaVersionH5GA6sv3T4HYy8c8Pmpl1lmMvSm6uxbInFhXd7RZTM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetDashallDashmodifiersLambdaFunction"
         },
-        "CodeSha256": "iV6y7lem7sI5Yozxu6O1xHCSMKoPC0OcdWS9B5M0+EE="
+        "CodeSha256": "2aoORwBXDazBpXHLLlX8liVI/o4KheXaboG/wZIxuIs="
+      }
+    },
+    "DeleteDashmodifierLambdaVersionG16LfIxVMcfTBfElHZ8YgqbkOM8zEJ6T8sxhZBR4": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "DeleteDashmodifierLambdaFunction"
+        },
+        "CodeSha256": "2aoORwBXDazBpXHLLlX8liVI/o4KheXaboG/wZIxuIs="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-modifier-service",
+        "Name": "dev-modifier-api",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -1304,7 +1304,7 @@
         "GetDashallDashmodifiersLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1626088493544": {
+    "ApiGatewayDeployment1626424511697": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1496,43 +1496,43 @@
         "Ref": "ServerlessDeploymentBucket"
       },
       "Export": {
-        "Name": "sls-modifier-service-dev-ServerlessDeploymentBucketName"
-      }
-    },
-    "GetDashmodifierLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "GetDashmodifierLambdaVersion5G3OslINbJCY3SLKZZmWfGdZ47KrAOjMB2gwvutBioM"
-      },
-      "Export": {
-        "Name": "sls-modifier-service-dev-GetDashmodifierLambdaFunctionQualifiedArn"
+        "Name": "sls-modifier-api-dev-ServerlessDeploymentBucketName"
       }
     },
     "AddDashmodifierLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AddDashmodifierLambdaVersionPn3SiayYG5M8F729iXaKyVvW6SoWYvmtueJJHqXcuRI"
+        "Ref": "AddDashmodifierLambdaVersionTjDR6WAx3XvaaObr0tdbfgjOP0PvYV2cdPQWk7N7U"
       },
       "Export": {
-        "Name": "sls-modifier-service-dev-AddDashmodifierLambdaFunctionQualifiedArn"
+        "Name": "sls-modifier-api-dev-AddDashmodifierLambdaFunctionQualifiedArn"
       }
     },
-    "DeleteDashmodifierLambdaFunctionQualifiedArn": {
+    "GetDashmodifierLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteDashmodifierLambdaVersionfLvpnDpaQOryCqkAOCTLYHz8SfTCVUYhcuXwLw5PD4"
+        "Ref": "GetDashmodifierLambdaVersionrPfsEwv5Z2GBtII4YWzwRgRdBr4stzR19kX7AbKmpBA"
       },
       "Export": {
-        "Name": "sls-modifier-service-dev-DeleteDashmodifierLambdaFunctionQualifiedArn"
+        "Name": "sls-modifier-api-dev-GetDashmodifierLambdaFunctionQualifiedArn"
       }
     },
     "GetDashallDashmodifiersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetDashallDashmodifiersLambdaVersiondenVEdmM6UWbkj55DHUAJBAEC8G6EX27gfrfojaUs4"
+        "Ref": "GetDashallDashmodifiersLambdaVersionH5GA6sv3T4HYy8c8Pmpl1lmMvSm6uxbInFhXd7RZTM"
       },
       "Export": {
-        "Name": "sls-modifier-service-dev-GetDashallDashmodifiersLambdaFunctionQualifiedArn"
+        "Name": "sls-modifier-api-dev-GetDashallDashmodifiersLambdaFunctionQualifiedArn"
+      }
+    },
+    "DeleteDashmodifierLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "DeleteDashmodifierLambdaVersionG16LfIxVMcfTBfElHZ8YgqbkOM8zEJ6T8sxhZBR4"
+      },
+      "Export": {
+        "Name": "sls-modifier-api-dev-DeleteDashmodifierLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
@@ -1558,7 +1558,7 @@
         ]
       },
       "Export": {
-        "Name": "sls-modifier-service-dev-ServiceEndpoint"
+        "Name": "sls-modifier-api-dev-ServiceEndpoint"
       }
     }
   }

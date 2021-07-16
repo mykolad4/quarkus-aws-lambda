@@ -1,4 +1,4 @@
-service: modifier-service
+service: modifier-api
 
 #plugins:
 #  - serverless-dynamodb-local
