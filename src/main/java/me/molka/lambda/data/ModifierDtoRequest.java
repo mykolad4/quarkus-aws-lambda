@@ -5,6 +5,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ModifierDtoRequest extends ModifierDto {
+public class ModifierDtoRequest extends ModifierGroupDto {
     private String action;
 }

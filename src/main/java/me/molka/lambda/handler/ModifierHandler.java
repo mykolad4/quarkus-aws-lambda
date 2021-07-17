@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import me.molka.lambda.data.ModifierDto;
 import me.molka.lambda.data.ModifierDtoRequest;
+import me.molka.lambda.data.ModifierGroupDto;
 import me.molka.lambda.data.REQUEST_TYPE;
 import me.molka.lambda.service.ModifierService;
 
@@ -29,12 +30,12 @@ public class ModifierHandler implements RequestHandler<ModifierDtoRequest, Strin
         switch (getAction(modifier.getAction())) {
             case CREATE_MODIFIER:
                 return addModifier(modifier);
-            case GET_MODIFIER:
-                return getModifier(modifier);
-            case DELETE_MODIFIER:
-                return deleteModifier(modifier);
-            case LIST:
-                return getAllModifiers();
+//            case GET_MODIFIER:
+//                return getModifier(modifier);
+//            case DELETE_MODIFIER:
+//                return deleteModifier(modifier);
+//            case LIST:
+//                return getAllModifiers();
             case UNKNOWN:
                 return null;
         }
@@ -42,23 +43,23 @@ public class ModifierHandler implements RequestHandler<ModifierDtoRequest, Strin
     }
 
     private String addModifier(ModifierDtoRequest request) throws JsonProcessingException {
-        ModifierDto modifier = modifierService.addModifier(request);
+        ModifierGroupDto modifier = modifierService.addModifier(request);
         return mapper.writeValueAsString(modifier);
     }
 
-    private String getModifier(ModifierDtoRequest request) throws JsonProcessingException {
-        Optional<ModifierDto> modifier = modifierService.getModifier(request.getId());
-        return mapper.writeValueAsString(modifier);
-    }
-
-    private String deleteModifier(ModifierDtoRequest request) throws JsonProcessingException {
-        modifierService.deleteModifier(request.getId());
-        return mapper.writeValueAsString("Deleted "+ request.getId());
-    }
-
-    private String getAllModifiers() throws JsonProcessingException {
-        return mapper.writeValueAsString(modifierService.getModifiers());
-    }
+//    private String getModifier(ModifierDtoRequest request) throws JsonProcessingException {
+//        Optional<ModifierDto> modifier = modifierService.getModifier(request.getId());
+//        return mapper.writeValueAsString(modifier);
+//    }
+//
+//    private String deleteModifier(ModifierDtoRequest request) throws JsonProcessingException {
+//        modifierService.deleteModifier(request.getId());
+//        return mapper.writeValueAsString("Deleted "+ request.getId());
+//    }
+//
+//    private String getAllModifiers() throws JsonProcessingException {
+//        return mapper.writeValueAsString(modifierService.getModifiers());
+//    }
 
     private REQUEST_TYPE getAction(String requestType) {
         try {
