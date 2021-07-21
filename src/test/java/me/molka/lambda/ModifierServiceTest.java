@@ -1,34 +1,8 @@
 package me.molka.lambda;
 
-import io.quarkus.amazon.lambda.test.LambdaClient;
-import io.quarkus.test.junit.QuarkusTest;
-import me.molka.lambda.config.TestDatabaseConfig;
-import me.molka.lambda.data.ModifierDto;
-import me.molka.lambda.service.ModifierService;
-import me.molka.lambda.service.ModifierServiceImpl;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.jboss.logging.Logger;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.testcontainers.containers.FixedHostPortGenericContainer;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.*;
-
-import javax.inject.Inject;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-
-import static me.molka.lambda.data.ModifierColumns.ID_COL;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
 //@QuarkusTest
 //@Testcontainers

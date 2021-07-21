@@ -12,13 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "modifiers")
 @RegisterForReflection
-public class ModifierGroupDto {
-//    todo: check names are not null
+public class ModifierGroup {
     private String merchantName;
     private String productName;
     private String groupName;
     private Integer atLeast;
     private Integer atMost;
     @Builder.Default
-    private List<ModifierDto> modifiers = new ArrayList<>();
+    private List<Modifier> modifiers = new ArrayList<>();
 }

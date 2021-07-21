@@ -5,19 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
-
-import java.util.Map;
-
-import static me.molka.lambda.data.ModifierColumns.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @RegisterForReflection
-public class ModifierDto {
-//    todo: check name is not null
+public class Modifier {
     private String name;
     private Double cost;
     private Integer atLeast;

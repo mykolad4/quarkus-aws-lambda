@@ -1,19 +1,16 @@
 package me.molka.lambda;
 
-import me.molka.lambda.data.ModifierDto;
-import me.molka.lambda.data.ModifierGroupDto;
-import org.hamcrest.MatcherAssert;
+import me.molka.lambda.converter.Converters;
+import me.molka.lambda.data.Modifier;
+import me.molka.lambda.data.ModifierGroup;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConvertersTest {
 
@@ -58,7 +55,7 @@ class ConvertersTest {
                 )
                 );
 
-        ModifierGroupDto expectedModifierGroup = ModifierGroupDto.builder()
+        ModifierGroup expectedModifierGroup = ModifierGroup.builder()
                 .merchantName("Komora")
                 .productName("Latte")
                 .groupName("Milk")
@@ -66,8 +63,8 @@ class ConvertersTest {
                 .atMost(1)
                 .build();
 
-        List<ModifierDto> expectedModifiers = List.of(
-                ModifierDto.builder()
+        List<Modifier> expectedModifiers = List.of(
+                Modifier.builder()
                         .name("Coconut milk")
                         .cost(20.0)
                         .atLeast(0)
@@ -75,7 +72,7 @@ class ConvertersTest {
                         .isHidden(false)
                         .isDefault(false)
                         .build(),
-                ModifierDto.builder()
+                Modifier.builder()
                         .name("Milk 2%")
                         .cost(0.0)
                         .atLeast(0)
@@ -83,7 +80,7 @@ class ConvertersTest {
                         .isDefault(true)
                         .isHidden(false)
                         .build(),
-                ModifierDto.builder()
+                Modifier.builder()
                         .name("Lactose-free milk")
                         .cost(55.0)
                         .atLeast(0)
@@ -93,7 +90,7 @@ class ConvertersTest {
                         .build()
         );
 
-        Collection<ModifierGroupDto> modifiers = Converters.convertItemsToGroupModifiers(items, "Komora");
+        Collection<ModifierGroup> modifiers = Converters.fromItemsToDto(items, "Komora");
 
         assertThat(modifiers).contains(expectedModifierGroup);
         assertThat(modifiers.iterator().next().getModifiers()).containsExactlyElementsOf(expectedModifiers);

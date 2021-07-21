@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ModifiersInputModel",
+  "type": "object",
+  "properties": {
+    "merchantName": { "type": "string" },
+    "productName": { "type": "string" },
+    "atLeast": { "type": "number" },
+    "atMost": { "type": "number" },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "cost": { "type": "number" },
+          "atLeast": { "type": "number" },
+          "atMost": { "type": "number" },
+          "isDefault": { "type": "boolean" },
+          "isHidden": { "type": "boolean" }
+        },
+        "required": ["name", "cost", "atMost", "atLeast", "isDefault", "isHidden"]
+      }
+    }
+  },
+  "required": ["merchantName", "productName", "atLeast", "atMost", "modifiers"]
+}

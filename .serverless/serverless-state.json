@@ -114,10 +114,28 @@
               "LogGroupName": "/aws/lambda/modifier-api-dev-add-modifier"
             }
           },
-          "GetDashmodifierDashbyDashproductLogGroup": {
+          "GetDashmodifiersDashbyDashmerchantLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifier-by-product"
+              "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifiers-by-merchant"
+            }
+          },
+          "GetDashmodifiersDashbyDashproductLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifiers-by-product"
+            }
+          },
+          "GetDashmodifiersDashbyDashgroupLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifiers-by-group"
+            }
+          },
+          "GetDashmodifierDashbyDashidLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/modifier-api-dev-get-modifier-by-id"
             }
           },
           "IamRoleLambdaExecution": {
@@ -207,7 +225,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/modifier-api/dev/1626847643331-2021-07-21T06:07:23.331Z/function.zip"
+                "S3Key": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z/function.zip"
               },
               "Handler": "me.molka.handler.ApiHandler",
               "Runtime": "provided",
@@ -231,18 +249,18 @@
               "AddDashmodifierLogGroup"
             ]
           },
-          "GetDashmodifierDashbyDashproductLambdaFunction": {
+          "GetDashmodifiersDashbyDashmerchantLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/modifier-api/dev/1626847643331-2021-07-21T06:07:23.331Z/function.zip"
+                "S3Key": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z/function.zip"
               },
               "Handler": "me.molka.handler.ApiHandler",
               "Runtime": "provided",
-              "FunctionName": "modifier-api-dev-get-modifier-by-product",
+              "FunctionName": "modifier-api-dev-get-modifiers-by-merchant",
               "MemorySize": 128,
               "Timeout": 5,
               "Environment": {
@@ -259,27 +277,150 @@
               }
             },
             "DependsOn": [
-              "GetDashmodifierDashbyDashproductLogGroup"
+              "GetDashmodifiersDashbyDashmerchantLogGroup"
             ]
           },
-          "GetDashmodifierDashbyDashproductLambdaVersioniKpCypbYXTvnjHgEe2DZo6ht42vSgN7RdayOWU2d9E": {
+          "GetDashmodifiersDashbyDashproductLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z/function.zip"
+              },
+              "Handler": "me.molka.handler.ApiHandler",
+              "Runtime": "provided",
+              "FunctionName": "modifier-api-dev-get-modifiers-by-product",
+              "MemorySize": 128,
+              "Timeout": 5,
+              "Environment": {
+                "Variables": {
+                  "DISABLE_SIGNAL_HANDLERS": "true",
+                  "DYNAMODB_TABLE": "dev-modifierTable"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetDashmodifiersDashbyDashproductLogGroup"
+            ]
+          },
+          "GetDashmodifiersDashbyDashgroupLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z/function.zip"
+              },
+              "Handler": "me.molka.handler.ApiHandler",
+              "Runtime": "provided",
+              "FunctionName": "modifier-api-dev-get-modifiers-by-group",
+              "MemorySize": 128,
+              "Timeout": 5,
+              "Environment": {
+                "Variables": {
+                  "DISABLE_SIGNAL_HANDLERS": "true",
+                  "DYNAMODB_TABLE": "dev-modifierTable"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetDashmodifiersDashbyDashgroupLogGroup"
+            ]
+          },
+          "GetDashmodifierDashbyDashidLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z/function.zip"
+              },
+              "Handler": "me.molka.handler.ApiHandler",
+              "Runtime": "provided",
+              "FunctionName": "modifier-api-dev-get-modifier-by-id",
+              "MemorySize": 128,
+              "Timeout": 5,
+              "Environment": {
+                "Variables": {
+                  "DISABLE_SIGNAL_HANDLERS": "true",
+                  "DYNAMODB_TABLE": "dev-modifierTable"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetDashmodifierDashbyDashidLogGroup"
+            ]
+          },
+          "GetDashmodifiersDashbyDashmerchantLambdaVersionvJWgVGsoxYXn8VfbB7JcL4ZxxBcN3QPw1oEJVyEOR8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "GetDashmodifierDashbyDashproductLambdaFunction"
+                "Ref": "GetDashmodifiersDashbyDashmerchantLambdaFunction"
               },
-              "CodeSha256": "xYKnnJKNKmQWeP6yGlZ4+F3R+TxV1VrsPtHKUgtFAgA="
+              "CodeSha256": "V24rVGTOk+pNQCV7gpJGjNM1/7x5/Yyohx1wKQ17nv0="
             }
           },
-          "AddDashmodifierLambdaVersionANY36IdpTfPJrzidSEXILkoFtWWJy27BwnYf1oXA0M": {
+          "GetDashmodifiersDashbyDashproductLambdaVersionxLEo67DDMDeikR1vC64TmMlUXQeAZEDXEzPztigAbs": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetDashmodifiersDashbyDashproductLambdaFunction"
+              },
+              "CodeSha256": "V24rVGTOk+pNQCV7gpJGjNM1/7x5/Yyohx1wKQ17nv0="
+            }
+          },
+          "AddDashmodifierLambdaVersionwQrPyAPV7NBBvV0mU3BXevluwFkxO4i7IMSFIKw0UpI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddDashmodifierLambdaFunction"
               },
-              "CodeSha256": "xYKnnJKNKmQWeP6yGlZ4+F3R+TxV1VrsPtHKUgtFAgA="
+              "CodeSha256": "V24rVGTOk+pNQCV7gpJGjNM1/7x5/Yyohx1wKQ17nv0="
+            }
+          },
+          "GetDashmodifiersDashbyDashgroupLambdaVersion70JNfCK4yYwz8NOZCjzXUlA6tuXcn3huDpJS2iu9zPA": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetDashmodifiersDashbyDashgroupLambdaFunction"
+              },
+              "CodeSha256": "V24rVGTOk+pNQCV7gpJGjNM1/7x5/Yyohx1wKQ17nv0="
+            }
+          },
+          "GetDashmodifierDashbyDashidLambdaVersione1vbNN154uwVdJAli2BcKo9xuY8dwy5H74sh54PW4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetDashmodifierDashbyDashidLambdaFunction"
+              },
+              "CodeSha256": "V24rVGTOk+pNQCV7gpJGjNM1/7x5/Yyohx1wKQ17nv0="
             }
           },
           "HttpApi": {
@@ -374,12 +515,12 @@
             },
             "DependsOn": "HttpApiIntegrationAddDashmodifier"
           },
-          "GetDashmodifierDashbyDashproductLambdaPermissionHttpApi": {
+          "GetDashmodifiersDashbyDashmerchantLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "GetDashmodifierDashbyDashproductLambdaFunction",
+                  "GetDashmodifiersDashbyDashmerchantLambdaFunction",
                   "Arn"
                 ]
               },
@@ -411,7 +552,7 @@
               }
             }
           },
-          "HttpApiIntegrationGetDashmodifierDashbyDashproduct": {
+          "HttpApiIntegrationGetDashmodifiersDashbyDashmerchant": {
             "Type": "AWS::ApiGatewayV2::Integration",
             "Properties": {
               "ApiId": {
@@ -419,7 +560,79 @@
               },
               "IntegrationType": "AWS_PROXY",
               "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetDashmodifierDashbyDashproductLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetDashmodifiersDashbyDashmerchantLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 5500
+            }
+          },
+          "HttpApiRouteGetModifiersMerchantMerchantidVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /modifiers/merchant/{merchantId}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationGetDashmodifiersDashbyDashmerchant"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationGetDashmodifiersDashbyDashmerchant"
+          },
+          "GetDashmodifiersDashbyDashproductLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetDashmodifiersDashbyDashproductLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationGetDashmodifiersDashbyDashproduct": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetDashmodifiersDashbyDashproductLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
               },
               "PayloadFormatVersion": "2.0",
               "TimeoutInMillis": 5500
@@ -438,13 +651,157 @@
                   [
                     "integrations",
                     {
-                      "Ref": "HttpApiIntegrationGetDashmodifierDashbyDashproduct"
+                      "Ref": "HttpApiIntegrationGetDashmodifiersDashbyDashproduct"
                     }
                   ]
                 ]
               }
             },
-            "DependsOn": "HttpApiIntegrationGetDashmodifierDashbyDashproduct"
+            "DependsOn": "HttpApiIntegrationGetDashmodifiersDashbyDashproduct"
+          },
+          "GetDashmodifiersDashbyDashgroupLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetDashmodifiersDashbyDashgroupLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationGetDashmodifiersDashbyDashgroup": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetDashmodifiersDashbyDashgroupLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 5500
+            }
+          },
+          "HttpApiRouteGetModifiersMerchantMerchantidVarProductProductidVarGroupGroupidVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationGetDashmodifiersDashbyDashgroup"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationGetDashmodifiersDashbyDashgroup"
+          },
+          "GetDashmodifierDashbyDashidLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetDashmodifierDashbyDashidLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationGetDashmodifierDashbyDashid": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetDashmodifierDashbyDashidLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 5500
+            }
+          },
+          "HttpApiRouteGetModifiersMerchantMerchantidVarProductProductidVarGroupGroupidVarModifierModifieridVar": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "GET /modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}/modifier/{modifierId}",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationGetDashmodifierDashbyDashid"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationGetDashmodifierDashbyDashid"
           },
           "modifierTable": {
             "Type": "AWS::DynamoDB::Table",
@@ -486,22 +843,49 @@
               "Name": "sls-modifier-api-dev-ServerlessDeploymentBucketName"
             }
           },
-          "GetDashmodifierDashbyDashproductLambdaFunctionQualifiedArn": {
+          "GetDashmodifiersDashbyDashmerchantLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetDashmodifierDashbyDashproductLambdaVersioniKpCypbYXTvnjHgEe2DZo6ht42vSgN7RdayOWU2d9E"
+              "Ref": "GetDashmodifiersDashbyDashmerchantLambdaVersionvJWgVGsoxYXn8VfbB7JcL4ZxxBcN3QPw1oEJVyEOR8"
             },
             "Export": {
-              "Name": "sls-modifier-api-dev-GetDashmodifierDashbyDashproductLambdaFunctionQualifiedArn"
+              "Name": "sls-modifier-api-dev-GetDashmodifiersDashbyDashmerchantLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetDashmodifiersDashbyDashproductLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetDashmodifiersDashbyDashproductLambdaVersionxLEo67DDMDeikR1vC64TmMlUXQeAZEDXEzPztigAbs"
+            },
+            "Export": {
+              "Name": "sls-modifier-api-dev-GetDashmodifiersDashbyDashproductLambdaFunctionQualifiedArn"
             }
           },
           "AddDashmodifierLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddDashmodifierLambdaVersionANY36IdpTfPJrzidSEXILkoFtWWJy27BwnYf1oXA0M"
+              "Ref": "AddDashmodifierLambdaVersionwQrPyAPV7NBBvV0mU3BXevluwFkxO4i7IMSFIKw0UpI"
             },
             "Export": {
               "Name": "sls-modifier-api-dev-AddDashmodifierLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetDashmodifiersDashbyDashgroupLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetDashmodifiersDashbyDashgroupLambdaVersion70JNfCK4yYwz8NOZCjzXUlA6tuXcn3huDpJS2iu9zPA"
+            },
+            "Export": {
+              "Name": "sls-modifier-api-dev-GetDashmodifiersDashbyDashgroupLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetDashmodifierDashbyDashidLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetDashmodifierDashbyDashidLambdaVersione1vbNN154uwVdJAli2BcKo9xuY8dwy5H74sh54PW4"
+            },
+            "Export": {
+              "Name": "sls-modifier-api-dev-GetDashmodifierDashbyDashidLambdaFunctionQualifiedArn"
             }
           },
           "HttpApiId": {
@@ -647,7 +1031,74 @@
             "httpApi": {
               "method": "POST",
               "path": "/modifiers",
-              "integration": "lambda"
+              "request": {
+                "schemas": {
+                  "application/json": {
+                    "schema": {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "title": "ModifiersInputModel",
+                      "type": "object",
+                      "properties": {
+                        "merchantName": {
+                          "type": "string"
+                        },
+                        "productName": {
+                          "type": "string"
+                        },
+                        "atLeast": {
+                          "type": "number"
+                        },
+                        "atMost": {
+                          "type": "number"
+                        },
+                        "modifiers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "cost": {
+                                "type": "number"
+                              },
+                              "atLeast": {
+                                "type": "number"
+                              },
+                              "atMost": {
+                                "type": "number"
+                              },
+                              "isDefault": {
+                                "type": "boolean"
+                              },
+                              "isHidden": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "cost",
+                              "atMost",
+                              "atLeast",
+                              "isDefault",
+                              "isHidden"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "merchantName",
+                        "productName",
+                        "atLeast",
+                        "atMost",
+                        "modifiers"
+                      ]
+                    },
+                    "name": "CreateModifiersModel",
+                    "description": "Validation model for creating/updating modifiers"
+                  }
+                }
+              }
             },
             "resolvedMethod": "POST",
             "resolvedPath": "/modifiers"
@@ -659,9 +1110,29 @@
         "timeout": 5,
         "runtime": "provided",
         "vpc": {},
-        "versionLogicalId": "AddDashmodifierLambdaVersionANY36IdpTfPJrzidSEXILkoFtWWJy27BwnYf1oXA0M"
+        "versionLogicalId": "AddDashmodifierLambdaVersionwQrPyAPV7NBBvV0mU3BXevluwFkxO4i7IMSFIKw0UpI"
       },
-      "get-modifier-by-product": {
+      "get-modifiers-by-merchant": {
+        "handler": "me.molka.handler.ApiHandler",
+        "events": [
+          {
+            "httpApi": {
+              "method": "GET",
+              "path": "/modifiers/merchant/{merchantId}"
+            },
+            "resolvedMethod": "GET",
+            "resolvedPath": "/modifiers/merchant/{merchantId}"
+          }
+        ],
+        "name": "modifier-api-dev-get-modifiers-by-merchant",
+        "package": {},
+        "memory": 128,
+        "timeout": 5,
+        "runtime": "provided",
+        "vpc": {},
+        "versionLogicalId": "GetDashmodifiersDashbyDashmerchantLambdaVersionvJWgVGsoxYXn8VfbB7JcL4ZxxBcN3QPw1oEJVyEOR8"
+      },
+      "get-modifiers-by-product": {
         "handler": "me.molka.handler.ApiHandler",
         "events": [
           {
@@ -673,13 +1144,53 @@
             "resolvedPath": "/modifiers/merchant/{merchantId}/product/{productId}"
           }
         ],
-        "name": "modifier-api-dev-get-modifier-by-product",
+        "name": "modifier-api-dev-get-modifiers-by-product",
         "package": {},
         "memory": 128,
         "timeout": 5,
         "runtime": "provided",
         "vpc": {},
-        "versionLogicalId": "GetDashmodifierDashbyDashproductLambdaVersioniKpCypbYXTvnjHgEe2DZo6ht42vSgN7RdayOWU2d9E"
+        "versionLogicalId": "GetDashmodifiersDashbyDashproductLambdaVersionxLEo67DDMDeikR1vC64TmMlUXQeAZEDXEzPztigAbs"
+      },
+      "get-modifiers-by-group": {
+        "handler": "me.molka.handler.ApiHandler",
+        "events": [
+          {
+            "httpApi": {
+              "method": "GET",
+              "path": "/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}"
+            },
+            "resolvedMethod": "GET",
+            "resolvedPath": "/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}"
+          }
+        ],
+        "name": "modifier-api-dev-get-modifiers-by-group",
+        "package": {},
+        "memory": 128,
+        "timeout": 5,
+        "runtime": "provided",
+        "vpc": {},
+        "versionLogicalId": "GetDashmodifiersDashbyDashgroupLambdaVersion70JNfCK4yYwz8NOZCjzXUlA6tuXcn3huDpJS2iu9zPA"
+      },
+      "get-modifier-by-id": {
+        "handler": "me.molka.handler.ApiHandler",
+        "events": [
+          {
+            "httpApi": {
+              "method": "GET",
+              "path": "/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}/modifier/{modifierId}"
+            },
+            "resolvedMethod": "GET",
+            "resolvedPath": "/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}/modifier/{modifierId}"
+          }
+        ],
+        "name": "modifier-api-dev-get-modifier-by-id",
+        "package": {},
+        "memory": 128,
+        "timeout": 5,
+        "runtime": "provided",
+        "vpc": {},
+        "versionLogicalId": "GetDashmodifierDashbyDashidLambdaVersione1vbNN154uwVdJAli2BcKo9xuY8dwy5H74sh54PW4"
       }
     },
     "resources": {
@@ -731,7 +1242,7 @@
       },
       "package": {
         "artifact": "build/function.zip",
-        "artifactDirectoryName": "serverless/modifier-api/dev/1626847643331-2021-07-21T06:07:23.331Z"
+        "artifactDirectoryName": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z"
       },
       "resources": {
         "$ref": "$[\"service\"][\"resources\"]"
@@ -744,7 +1255,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/modifier-api/dev/1626847643331-2021-07-21T06:07:23.331Z",
+    "artifactDirectoryName": "serverless/modifier-api/dev/1626896140339-2021-07-21T19:35:40.339Z",
     "artifact": "function.zip"
   }
 }

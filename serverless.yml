@@ -69,14 +69,36 @@ functions:
       - httpApi:
           method: POST
           path: '/modifiers'
-          integration: lambda
-  get-modifier-by-product:
+          request:
+            schemas:
+              application/json:
+                schema: ${file(src/main/resources/create_request.json)}
+                name: CreateModifiersModel
+                description: 'Validation model for creating/updating modifiers'
+  get-modifiers-by-merchant:
+    handler: me.molka.handler.ApiHandler
+    events:
+      - httpApi:
+          method: GET
+          path: '/modifiers/merchant/{merchantId}'
+  get-modifiers-by-product:
     handler: me.molka.handler.ApiHandler
     events:
       - httpApi:
           method: GET
           path: '/modifiers/merchant/{merchantId}/product/{productId}'
-  #          request:
+  get-modifiers-by-group:
+    handler: me.molka.handler.ApiHandler
+    events:
+      - httpApi:
+          method: GET
+          path: '/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}'
+  get-modifier-by-id:
+    handler: me.molka.handler.ApiHandler
+    events:
+      - httpApi:
+          method: GET
+          path: '/modifiers/merchant/{merchantId}/product/{productId}/group/{groupId}/modifier/{modifierId}'
   #            template:
   #              application/json: >
   #                #set($inputRoot = $input.path('$'))
