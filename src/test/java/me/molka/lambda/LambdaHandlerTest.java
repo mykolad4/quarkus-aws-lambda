@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import io.quarkus.amazon.lambda.test.LambdaClient;
 import io.quarkus.test.junit.QuarkusTest;
 
-@QuarkusTest
+//@QuarkusTest
 public class LambdaHandlerTest {
 
 //    todo: write unit tests for handlers

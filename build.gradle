@@ -12,6 +12,9 @@ dependencies {
     implementation 'io.quarkus:quarkus-config-yaml'
     implementation 'io.quarkus:quarkus-amazon-dynamodb'
     implementation 'io.quarkus:quarkus-amazon-lambda'
+//    implementation 'io.quarkus:quarkus-amazon-lambda-http'
+//    implementation 'io.quarkus:quarkus-resteasy'
+
     implementation 'software.amazon.awssdk:url-connection-client'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 //    Lombok dependencies
@@ -25,6 +28,8 @@ dependencies {
     testCompile "org.testcontainers:testcontainers:1.15.3"
     testCompile "org.testcontainers:junit-jupiter:1.15.3"
     testCompile "net.javacrumbs.json-unit:json-unit-assertj:2.27.0"
+    testImplementation "org.mockito:mockito-core:2.1.0"
+
 }
 
 group 'me.molka'

@@ -64,41 +64,52 @@ resources:
 
 functions:
   add-modifier:
-    handler: me.molka.handler.ModifierHandler
+    handler: me.molka.handler.ApiHandler
     events:
-      - http:
-          path: modifier/add
-          method: post
+      - httpApi:
+          method: POST
+          path: '/modifiers'
           integration: lambda
-#          request:
-#            template:
-#              application/json: >
-#                #set($inputRoot = $input.path('$'))
-#                {
-#                  "action": "CREATE_MODIFIER",
-#                  "name": "$inputRoot.name",
-#                  "cost": "$inputRoot.cost",
-#                  "atLeast": "$inputRoot.atLeast",
-#                  "atMost": "$inputRoot.atMost",
-#                  "isDefault": "$inputRoot.isDefault",
-#                  "isHidden": "$inputRoot.isHidden"
-#                }
-#          response:
-#            headers:
-#              Access-Control-Allow-Origin: "'*'"
-#              Content-Type: "'application/json'"
-#            template: >
-#              #set($inputRoot = $input.path('$'))
-#              {
-#                "result": $inputRoot
-#              }
+  get-modifier-by-product:
+    handler: me.molka.handler.ApiHandler
+    events:
+      - httpApi:
+          method: GET
+          path: '/modifiers/merchant/{merchantId}/product/{productId}'
+  #          request:
+  #            template:
+  #              application/json: >
+  #                #set($inputRoot = $input.path('$'))
+  #                {
+  #                  "action": "CREATE_MODIFIER",
+  #                  "name": "$inputRoot.name",
+  #                  "cost": "$inputRoot.cost",
+  #                  "atLeast": "$inputRoot.atLeast",
+  #                  "atMost": "$inputRoot.atMost",
+  #                  "isDefault": "$inputRoot.isDefault",
+  #                  "isHidden": "$inputRoot.isHidden"
+  #                }
+  #          response:
+  #            headers:
+  #              Access-Control-Allow-Origin: "'*'"
+  #              Content-Type: "'application/json'"
+  #            template: >
+  #              #set($inputRoot = $input.path('$'))
+  #              {
+  #                "result": $inputRoot
+  #
+
+#        }
 #  get-modifier:
-#    handler: me.molka.handler.ModifierHandler
+#    handler: me.molka.handler.GetModifiersByProductHandler
 #    events:
-#      - http:
-#          path: modifier/{modifierId}
-#          method: get
+#      - httpApi:
+#          method: GET
+#          path: '/modifier'
 #          integration: lambda
+
+
+
 #          request:
 #            template:
 #              application/json: >

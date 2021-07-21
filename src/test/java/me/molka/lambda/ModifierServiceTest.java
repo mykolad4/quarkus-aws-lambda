@@ -4,8 +4,8 @@ import io.quarkus.amazon.lambda.test.LambdaClient;
 import io.quarkus.test.junit.QuarkusTest;
 import me.molka.lambda.config.TestDatabaseConfig;
 import me.molka.lambda.data.ModifierDto;
-import me.molka.lambda.data.ModifierDtoRequest;
 import me.molka.lambda.service.ModifierService;
+import me.molka.lambda.service.ModifierServiceImpl;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -25,27 +25,26 @@ import java.util.List;
 import java.util.Optional;
 
 import static me.molka.lambda.data.ModifierColumns.ID_COL;
-import static me.molka.lambda.data.REQUEST_TYPE.CREATE_MODIFIER;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-@QuarkusTest
-@Testcontainers
-@TestInstance(PER_CLASS)
+//@QuarkusTest
+//@Testcontainers
+//@TestInstance(PER_CLASS)
 public class ModifierServiceTest {
 
-    @Inject
-    ModifierService modifierService;
-    @ConfigProperty(name="quarkus.dynamodb.endpoint-override")
-    String endpointUrl;
-    @Inject
-    DynamoDbClient dynamoDbClient;
-    @Inject
-    TestDatabaseConfig testDatabaseConfig;
-    GenericContainer dynamodbContainer;
-    private static final Logger LOG = Logger.getLogger(ModifierServiceTest.class);
+//    @Inject
+//    ModifierService modifierService;
+//    @ConfigProperty(name="quarkus.dynamodb.endpoint-override")
+//    String endpointUrl;
+//    @Inject
+//    DynamoDbClient dynamoDbClient;
+//    @Inject
+//    TestDatabaseConfig testDatabaseConfig;
+//    GenericContainer dynamodbContainer;
+//    private static final Logger LOG = Logger.getLogger(ModifierServiceTest.class);
 
 //    @BeforeAll
 //    public void setup() throws URISyntaxException {
